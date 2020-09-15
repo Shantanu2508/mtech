@@ -1,0 +1,69 @@
+EE5301: DSP LAB/ EE5801: CSP LAB : ASSIGNMENT 1 
+.................................................
+SHANTANU YADAV (EE20MTECH12001) 
+.................................................
+
+
+
+enter length of first signal
+20
+enter length of second signal
+15
+Enter the values of first signal
+0.5377 1.8339 -2.2588 0.8622 0.3188 -1.3077 -0.4336 0.3426 3.5784 2.7694 -1.3499 3.0349 0.7254 -0.0631 0.7147 -0.2050 -0.1241 1.4897 1.4090 1.4172
+Enter the values of second signal
+0.6715 -1.2075 0.7172 1.6302 0.4889 1.3047 0.7269 -0.3034 0.2939 -0.7873 0.884 -1.1471 -1.0689 -0.8095 -2.9443
+Enter sampling factor
+2
+Select the operation :
+ Note upsampling and downsampling will be done on the first signal
+ Operation List : 
+ 1.Convolution 
+ 2.Correlation 
+ 3.Down Sampling 
+ 4.Upsampling 
+1
+The convoluted signal y is :
+0.361066 0.582191 -3.345580 5.498300 0.805462 -2.728867 4.601303 -1.020150 -1.213108 -1.718099 -4.705936 13.078274 -2.613274 5.783425 11.015975 -4.785725 10.577317 3.097521 -0.625629 4.815834 -7.433612 0.289940 -9.000374 -8.164317 3.992727 -9.318272 -3.911922 0.592819 -3.384733 -1.251759 -3.972275 -7.041554 -5.295742 -4.172662 
+To continue press 1 and to exit press 0
+1
+Select the operation :
+ Note upsampling and downsampling will be done on the first signal
+ Operation List : 
+ 1.Convolution 
+ 2.Correlation 
+ 3.Down Sampling 
+ 4.Upsampling 
+2
+
+
+The corelation output is
+0.951650 -0.765125 0.315382 1.438708 4.070427 5.604844 2.342094 3.218854 3.091613 -5.315595 8.220412 2.302797 -3.914530 6.121962 -0.222282 1.409379 1.186848 -4.770238 6.875267 -12.669139 -5.363235 0.464064 -15.291903 -0.993264 -9.353160 -10.076082 3.290770 -2.277142 6.459493 -0.850502 -3.287128 4.591295 -5.834819 -1.583150 
+To continue press 1 and to exit press 0
+1
+Select the operation :
+ Note upsampling and downsampling will be done on the first signal
+ Operation List : 
+ 1.Convolution 
+ 2.Correlation 
+ 3.Down Sampling 
+ 4.Upsampling 
+3
+down-sampled signal is : 
+0.537700 -2.258800 0.318800 -0.433600 3.578400 -1.349900 0.725400 0.714700 -0.124100 1.409000 
+To continue press 1 and to exit press 0
+1
+Select the operation :
+ Note upsampling and downsampling will be done on the first signal
+ Operation List : 
+ 1.Convolution 
+ 2.Correlation 
+ 3.Down Sampling 
+ 4.Upsampling 
+4
+The up-sampled signal is 
+0.5377 0.0000 0.0000 1.8339 0.0000 0.0000 -2.2588 0.0000 0.0000 0.8622 0.0000 0.0000 0.3188 0.0000 0.0000 -1.3077 0.0000 0.0000 -0.4336 0.0000 0.0000 0.3426 0.0000 0.0000 3.5784 0.0000 0.0000 2.7694 0.0000 0.0000 -1.3499 0.0000 0.0000 3.0349 0.0000 0.0000 0.7254 0.0000 0.0000 -0.0631 0.0000 0.0000 0.7147 0.0000 0.0000 -0.2050 0.0000 0.0000 -0.1241 0.0000 0.0000 1.4897 0.0000 0.0000 1.4090 0.0000 0.0000 1.4172 0.0000 0.0000 
+To continue press 1 and to exit press 0
+
+
+

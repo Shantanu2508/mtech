@@ -1,0 +1,193 @@
+\documentclass[journal,12pt,twocolumn]{IEEEtran}
+
+\usepackage{setspace}
+\usepackage{gensymb}
+
+\singlespacing
+
+
+\usepackage[cmex10]{amsmath}
+
+\usepackage{amsthm}
+
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{stfloats}
+\usepackage{bm}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{subfig}
+
+\usepackage{longtable}
+\usepackage{multirow}
+
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage{steinmetz}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{verbatim}
+%\usepackage{tfrupee}
+\usepackage[breaklinks=true]{hyperref}
+
+\usepackage{tkz-euclide}
+
+\usetikzlibrary{calc,math}
+\usepackage{listings}
+    \usepackage{color}                                            %%
+    \usepackage{array}                                            %%
+    \usepackage{longtable}                                        %%
+    \usepackage{calc}                                             %%
+    \usepackage{multirow}                                         %%
+    \usepackage{hhline}                                           %%
+    \usepackage{ifthen}                                           %%
+    \usepackage{lscape}     
+\usepackage{multicol}
+\usepackage{chngcntr}
+
+\DeclareMathOperator*{\Res}{Res}
+
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+
+\renewcommand\thesectiondis{\arabic{section}}
+\renewcommand\thesubsectiondis{\thesectiondis.\arabic{subsection}}
+\renewcommand\thesubsubsectiondis{\thesubsectiondis.\arabic{subsubsection}}
+
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+\def\inputGnumericTable{}                                 %%
+
+\lstset{
+%language=C,
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+\begin{document}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[section]
+\newtheorem{definition}[problem]{Definition}
+
+\newcommand{\BEQA}{\begin{eqnarray}}
+\newcommand{\EEQA}{\end{eqnarray}}
+\newcommand{\define}{\stackrel{\triangle}{=}}
+\bibliographystyle{IEEEtran}
+\providecommand{\mbf}{\mathbf}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+\providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
+\providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
+\providecommand{\rsbrak}[1]{\ensuremath{{}\left.#1\right]}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\lbrak}[1]{\ensuremath{\left(#1\right.}}
+\providecommand{\rbrak}[1]{\ensuremath{\left.#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\providecommand{\lcbrak}[1]{\ensuremath{\left\{#1\right.}}
+\providecommand{\rcbrak}[1]{\ensuremath{\left.#1\right\}}}
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+\providecommand{\res}[1]{\Res\displaylimits_{#1}} 
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+%\providecommand{\norm}[1]{\lVert#1\rVert}
+\providecommand{\mtx}[1]{\mathbf{#1}}
+\providecommand{\mean}[1]{E\left[ #1 \right]}
+\providecommand{\fourier}{\overset{\mathcal{F}}{ \rightleftharpoons}}
+%\providecommand{\hilbert}{\overset{\mathcal{H}}{ \rightleftharpoons}}
+\providecommand{\system}{\overset{\mathcal{H}}{ \longleftrightarrow}}
+	%\newcommand{\solution}[2]{\textbf{Solution:}{#1}}
+\newcommand{\solution}{\noindent \textbf{Solution: }}
+\newcommand{\cosec}{\,\text{cosec}\,}
+\providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+\numberwithin{equation}{subsection}
+\makeatletter
+\@addtoreset{figure}{problem}
+\makeatother
+\let\StandardTheFigure\thefigure
+\let\vec\mathbf
+\renewcommand{\thefigure}{\theproblem}
+\def\putbox#1#2#3{\makebox[0in][l]{\makebox[#1][l]{}\raisebox{\baselineskip}[0in][0in]{\raisebox{#2}[0in][0in]{#3}}}}
+     \def\rightbox#1{\makebox[0in][r]{#1}}
+     \def\centbox#1{\makebox[0in]{#1}}
+     \def\topbox#1{\raisebox{-\baselineskip}[0in][0in]{#1}}
+     \def\midbox#1{\raisebox{-0.5\baselineskip}[0in][0in]{#1}}
+\vspace{3cm}
+\title{EE5301 ASSIGNMENT 1}
+\author{SHANTANU YADAV }
+\maketitle
+\newpage
+\bigskip
+\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+
+The C code solution code is available at
+\begin{lstlisting}
+       https://github.com/Shantanu2508/assignment-1/blob/master/stline.py
+\end{lstlisting}
+%
+%
+\section{Problem}
+Implement basic signal processing algorithms such as convolution, correlation, downsampling and upsampling
+\section{Theory}
+\subsection{Convolution}
+The complete characterization of a LTI system can be done by its impusle response. Mathematically,
+\begin{align*}
+	x[n]=\delta[n] \\ 
+	y[n]=h[n]
+\end{align*}
+According to the $\mathbf{shifting}$ $\mathbf{property}$, any signal can be produced as combination of weighted and shifted impulses; that is
+\begin{align*}
+	x[n]=\sum\limits_{k=\infty}^{\infty} x[k]\delta[n-k] \\
+	\implies 
+	y[n]=\sum\limits_{k=\infty}^{\infty} x[k] T\cbrak{\delta[n-k]} \\
+	y[n]=\sum\limits_{k=\infty}^{\infty} x[k] h[n-k] \\
+\end{align*}
+The operation can be symbolically as 
+\begin{align*}
+	y[n]=x[n]*h[n]
+\end{align*}
+For a causal LTI system the output depends upon past and present values. \\
+For a discrete time causal LTI system 
+\begin{align*}
+	h[n]=0 \text{\quad for \quad} k<0 \\
+	y[n]=\sum\limits_{k=0}^{\infty} h[k] x[n-k] \\
+\end{align*}
+\subsection{Correlation}
+Signal correlation can be considered as a measure of similarity of two signals. In signal processing systems, when a signal is corrupted by another undesirable signal (noise) signal estimation is performed by finding the correlation between the corrupted signal and the original signal. \\
+Given two discrete-time real signals (sequences) $x[k]$ and $y[k]$ cross-correlation is defined as
+\begin{align*}
+	R_{xy}[k] = \sum\limits_{n=-\infty}^{\infty} x[n]y[n-k]
+\end{align*}
+where the parameter $k$ is any integer $-\infty \leq k \leq \infty$ .\\
+Correlation can also be evaluated using the discrete-time convolution as follows 
+\begin{align*}
+	R_{xy}[k] = x[k]*y[-k]
+\end{align*}
+\subsubsection{Properties of correlation}
+1. Signal crosscorrelation can be also considered as a measure of similarity of two signals.\\
+2. Signal autocorrelation indicates how the signal energy (power) is distributed within the signal, and as such is used to measure the signal power.\\
+3. $R_{xx}[0] = E_{\infty}^x$ \\
+4. $R_{xx}[k] \leq R_{xx}[0]$ \\
+5. $R_{xy}[k] = R_{yx}{-k}$
+\subsection{Up/Down sampling}
+\subsubsection{Upsampling}
+In upsampling the sampling rate is increased by inserting additional sample points of weight 0 between successive samples.
+\begin{align*}
+	y[n] = x[\frac{n}{L}]
+\end{align*}
+\subsubsection{Down sampling} In down sampling the sampling rate is decreased by selecting every alternate M samples.
+\begin{align*}
+        y[n] = x[Mn]
+\end{align*}
+\end{document}
