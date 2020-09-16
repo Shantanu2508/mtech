@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-int convolution (float x[] , float h[], int x_len, int h_len)
+float *convolution (float x[] , float h[], int x_len, int h_len)
 {
 	float*y;
 	
@@ -20,13 +20,11 @@ int convolution (float x[] , float h[], int x_len, int h_len)
 		}
 		y[n]=temp;
 	}
-	printf("The convoluted signal y is :\n");
-	for(int n=0;n<cov_len;n++)printf("%f ",y[n]);
-	return 1;
+	return y;
 	
 }
 //corr is function for finding correlation between x and y : Corelation is convolution of y and inv sequence of x i.e Rxy[k] = Conv( x(-n)y(n-k))
-void corr(float x[],float y[],int x_len,int y_len)
+float *corr(float x[],float y[],int x_len,int y_len)
 {
 	int n = x_len+y_len-1;
 	float sum=0;
@@ -34,9 +32,9 @@ void corr(float x[],float y[],int x_len,int y_len)
 	Rxy=(float*)calloc(n,sizeof(float));
 	xx=(float*)calloc(n,sizeof(float));
 	
-	//To invert the first sequence
-	for(int i=0,j=x_len-1;i<n,j>=0;i++,j--) xx[i] = x[j];
+
 	//creating nxn square matrix with all zeros
+	for(int i=0,j=x_len-1;i<n,j>=0;i++,j--) xx[i] = x[j];
 	for(int i=0;i<n;i++)
 		yy[i]=(float*)calloc(n,sizeof(float));
 	
@@ -52,7 +50,7 @@ void corr(float x[],float y[],int x_len,int y_len)
 	
 	printf("\n\n");
 	//.........................................................................
-	//convolution of yy and inverse sequence of x i.e xx
+
 	for(int i=0;i<n;i++)
 	{
 		for(int j=0;j<n;j++)
@@ -60,12 +58,11 @@ void corr(float x[],float y[],int x_len,int y_len)
 			sum= sum+ yy[i][j]*xx[j];
 		}
 
-		Rxy[i] = sum;
+		Rxy[n-1-i] = sum;
 		sum=0;
 	}
 	//...........................................................................
-	printf("The corelation output is\n");
-	for(int i=0;i<n;i++) printf("%f ",Rxy[i]);
+	return Rxy;
 }
 
 
@@ -74,7 +71,7 @@ void corr(float x[],float y[],int x_len,int y_len)
 
 
 
-void downsampling(float x[], int x_len, int sampling_factor)
+float *downsampling(float x[], int x_len, int sampling_factor)
 {
 
 	int new_len;
@@ -83,12 +80,11 @@ void downsampling(float x[], int x_len, int sampling_factor)
 	float* sampled_x;
 	sampled_x = (float*)calloc(new_len, sizeof(float));
 	for (int i = 0, j = 0; i < x_len, j < new_len; i = i + sampling_factor, j++) sampled_x[j] = x[i];
-	printf("down-sampled signal is : \n");
-	for (int i = 0; i < new_len; i++) printf("%f ", sampled_x[i]);
+	return sampled_x;
 }
 
 
-int upsampling(float x[], int x_len, int sampling_factor)
+float *upsampling(float x[], int x_len, int sampling_factor)
 {
 	int j=0;
 	int new_len = x_len + sampling_factor*x_len;
@@ -105,6 +101,5 @@ int upsampling(float x[], int x_len, int sampling_factor)
 		}
 		j++;
 	}
-	printf("The up-sampled signal is \n");
-	for (int j = 0; j < new_len; j++) printf("%0.4f ", sampled_x[j]);
+	return sampled_x;
 }

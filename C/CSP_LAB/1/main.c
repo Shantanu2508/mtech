@@ -17,6 +17,8 @@ int main()
 	x=(float*)calloc(x_len,sizeof(float));
 	h=(float*)calloc(h_len,sizeof(float));
 	
+	
+	
 	//take values of signals
 	printf("Enter the values of first signal\n");
 	for(int i=0;i<x_len;i++)scanf("%f",&x[i]);
@@ -25,6 +27,15 @@ int main()
 	printf("Enter sampling factor\n");
 	scanf("%d",&sampling_factor);
 	
+	//output parameters
+	float *y,*Rxy,*sampled_downx,*sampled_upx;
+	//output lengths
+	int conv_len = x_len+h_len-1;
+	int corr_len = x_len+h_len-1;
+	int down_len;
+	if(x_len%2==0) down_len = x_len / sampling_factor;
+	else down_len = (x_len) / sampling_factor + 1;
+	int up_len = x_len + sampling_factor*x_len;
 	int cont = 1;
 	
 	while(cont)
@@ -34,10 +45,23 @@ int main()
 	scanf("%d",&operation_number);
 	switch (operation_number)
 	{
-		case(1): convolution(x,h,x_len,h_len);break;
-		case(2): corr(x,h,x_len,h_len);break;
-		case(3):downsampling(x,x_len,sampling_factor);break; 
-		case(4):upsampling(x,x_len,sampling_factor); break;
+		case(1): y=convolution(x,h,x_len,h_len);
+		printf("The convoluted signal y is :\n");
+	        for(int n=0;n<conv_len;n++)printf("%f ",y[n]);break;
+	        
+		case(2): Rxy=corr(x,h,x_len,h_len);
+		printf("The corelation output is\n");
+	        for(int i=0;i<corr_len;i++) printf("%f ",Rxy[i]);break;
+	        
+		case(3):sampled_downx=downsampling(x,x_len,sampling_factor);
+		printf("down-sampled signal is : \n");
+	        for (int i = 0; i < down_len; i++) printf("%f ", sampled_downx[i]);
+                break; 
+                
+		case(4):sampled_upx=upsampling(x,x_len,sampling_factor); 
+	        printf("The up-sampled signal is \n");
+	        for (int j = 0; j < up_len; j++) printf("%0.4f ", sampled_upx[j]);break;
+	        
 		default: printf("Wrong choice\n");break; 
 		}
 		printf("\nTo continue press 1 and to exit press 0\n");
