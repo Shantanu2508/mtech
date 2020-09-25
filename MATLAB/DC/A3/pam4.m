@@ -11,3 +11,5 @@ codebook=[-3,-1,1,3];
 partition=[0 1 2];
 [index,pamout]=quantiz(pamout,partition,codebook);
 end
+
+
