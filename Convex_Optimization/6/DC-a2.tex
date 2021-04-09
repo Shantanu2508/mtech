@@ -1,0 +1,406 @@
+%
+%       Shantanu Yadav
+%       September 15, 2020
+%-------------------------------------------------------------------------------
+\documentclass[11pt]{article}
+\textheight=9.5in
+\textwidth=6.5in
+\oddsidemargin=+10mm
+\evensidemargin=+6mm
+\topmargin=-0.8in
+
+\usepackage{enumerate,float}
+\usepackage{fancyhdr,amssymb,lastpage}
+\usepackage{amsmath}
+\usepackage[colorlinks]{hyperref}
+\usepackage{tikz}
+\renewcommand{\rmdefault}{pnc}
+\makeatletter
+\newcommand{\LeftEqNo}{\let\veqno\@@leqno}
+%------------------------------------------------------------------------------
+%--------------------------------- B E G I N   T H E   D O C U M E N T --------
+\begin{document}
+%--------------------------------- Title of Document 
+%((((((------------------------------------------------------------------------
+%\baselineskip=18pt
+ \begin{center}
+         {\LARGE \bf
+	 EE5837 : Principles of Digital Communication \\
+             Assignment 2 Solutions 
+         }
+ \end{center}
+ \vspace{1ex}
+ \begin{center}
+	 {\Large \bf Shantanu Yadav}, \quad {\bf EE20MTECH12001}
+ \end{center}
+ \begin{center}
+	 \hrule
+ \end{center}
+ \vspace{1ex}
+%))))))------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+\begin{enumerate}[{1}($a$): ]
+\item The sample space $\Omega$ of an experiment is the set of all possible 
+	outcomes, which can be finite, countably infinite or uncountably 
+	infinite.
+\item Let $\mathbf{F}$ be set of events of sample space $\Omega$ and let 
+	$A_1,A_2,A_3,A_4$ and $A_5$ be five different events of $\mathbf{F}$. 
+		The events are described as follows: 
+\begin{enumerate}[{$A$}$_1$: ]
+	\item An odd number will follow an even number.
+	\item The second dice results a value a greater than the first ones.
+	\item The value on both the dice are same.
+	\item The outcomes on both the dice are successive and the value of 
+		first die is smaller than the value on the second die.
+	\item One of the outcome is a multiple of 3.
+\end{enumerate}
+
+\item Let $A$ be the event that the sum of the values on the faces of two dice 
+	is a perfect square. The possible outcomes are: 
+	\begin{align*} 
+	A = \{(1,3),(2,2),(3,1),(3,6),(4,5),(5,4),(6,3) \} 
+	\end{align*} 
+\item Let $B$ be the event that first dice shows a perfect square. 
+	Then possible outcomes are $B=\{1,4\}$. 
+
+	Then the possible outcomes of $A$ given $B$ hasalready occured are: 
+	$A|B = \{(1,3),(4,5)\}$ 
+
+	Total number of outcomes given $B$ has occured are:
+	\begin{align*} 
+	\{(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),
+		&(4,1),(4,2),(4,3),(4,4),(4,5),(4,6)\} \\
+		\implies \qquad & P(A|B) = \frac{2}{12} = \frac{1}{6}
+	\end{align*} 
+\item The possible outcomes of event $C$ are $\{(1,3),(4,5)\}$. \\
+	Total number of outcomes given event $A$ and $B$ have occured are 
+	$\{(1,3),(4,5)\}$ \\
+	$\implies P(C|AB)=1$ 
+\end{enumerate}
+
+\begin{enumerate}[1: ]
+\setcounter{enumi}{1}
+\item No, occurance of an event $A$ does not make the occurance of $B$ more 
+	likely. This is because occurance of event $A$ does not restrict the 
+	sample space of event $B$, since all the values from 1 to 6 for the 
+	first die outcome are present in the outcomes of event $A$.
+	\begin{align*} 
+	A = \{(1,3),(2,2),(3,1),(3,6),(4,5),(5,4),(6,3)\} \\
+		\text{Sample space for event} \quad B = \{1,2,3,4,5,6\} 
+	\end{align*} 
+	Whereas occurrence of event $B$ restricts the sample space of event $A$
+		from 36 possible outcomes to 12 possible outcomes.
+\item Let $S$ denote the sample space and $A_1$ and $A_2$ be any two events of
+	$S$. Therefore
+	\begin{figure}[H]
+		\centering
+	\begin{minipage}{0.5\linewidth} 
+	\includegraphics[width=0.95\linewidth]{setunion1.png}
+	\end{minipage} \quad
+	\begin{minipage}[c]{0.2\linewidth} ~\hfill
+		\[ A_1 \subseteq S, \quad A_2 \subseteq S \]
+		\[ A_1 \cup A_2 \subseteq S \quad \text{or} \quad
+					A_1 \cup A_2 = S
+		\]
+	\end{minipage}
+	\vspace*{-1ex}
+	\end{figure}
+
+	From axiom (1): $P(S)=1$, \\
+	from axiom (2): if $A \subseteq B$, then $P(A) \le P(B)$, and\\
+	from axiom (3): $ P(A_1\cup A_2) = P(A_1) + P(A_2) 
+			- P(A_1\cap A_2)$ \\
+	We have, 
+	\begin{align} 
+		&P(A_1\cup A_2) \le P(S) \nonumber \\
+	\implies \qquad & P(A_1) + P(A_2) - P(A_1\cap A_2) \le 1 \nonumber \\
+	\implies \qquad & P(A_1\cap A_2) \ge P(A_1) + P(A_2) - 1
+	\end{align} 
+
+	For 3 events $A_1$, $A_2$ and $A_3$, we have
+	\begin{figure}[H]
+		\centering
+	\begin{minipage}{0.5\linewidth} 
+	\includegraphics[width=0.95\linewidth]{setunion3.png}
+	\end{minipage} \quad
+	\begin{minipage}[c]{0.2\linewidth} ~\hfill
+		\[ \bigcup_{j=1}^{3} A_j \subseteq S \]
+	\end{minipage}
+	\vspace*{-1ex}
+	\end{figure}
+
+	From axiom (2): 
+	\begin{align} 
+		P(\bigcup_{j=1}^{3} A_j) \le P(S)=1 	\label{itm3eq1}
+	\end{align} 
+	also
+	\begin{align} 
+		P(\bigcup_{j=1}^{3} A_j) \le \sum_{j=1}^{3} P(A_j) \le 1 
+					\label{itm3eq2}
+	\end{align} 
+	From axiom (3): 
+		\[ P(\bigcup_{j=1}^{3} A_j) = \sum_{j=1}^{3} P(A_j) 
+		- \sum_{1\le i,j\le 3,i\ne j}
+		P(A_i\cap A_j) + P(A_1\cap A_2 \cap A_3)
+		\]
+	Substituting in (\ref{itm3eq2}) and re-odering,
+	\begin{align} 
+	1+\sum_{1\le i,j\le 3,i\ne j} P(A_i\cap A_j) - \sum_{j=1}^{3} P(A_j)
+		\ge P(A_1\cap A_2 \cap A_3) \ge 0 	\label{itm3eq3}
+	\end{align} 
+
+	But, from previous result, \quad
+	$P(A_1\cap A_2) \ge P(A_1) + P(A_2) - 1$
+	\begin{equation}\LeftEqNo
+	\sum_{1\le i,j\le 3,i\ne j} P(A_i\cap A_j) \ge 2 \sum_{j=1}^{3} P(A_j)-3
+		\tag*{$\implies$}
+	\end{equation}
+	or equivalently,
+	\begin{equation*}
+	\sum_{1\le i,j\le 3,i\ne j} P(A_i\cap A_j) - \sum_{j=1}^{3}P(A_j) \ge 
+		\sum_{j=1}^{3} P(A_j)-3
+	\end{equation*}
+	so that
+	\begin{equation}
+	1+\sum_{1\le i,j\le 3,i\ne j} P(A_i\cap A_j) - \sum_{j=1}^{3}P(A_j) \ge 
+		\sum_{j=1}^{3} P(A_j)-2 	\label{itm3eq4}
+	\end{equation}
+
+	\begin{equation}\LeftEqNo
+	\sum_{j=1}^{3} P(A_j) \le 1 \tag*{$\therefore$}
+	\end{equation}
+	\begin{equation}\LeftEqNo
+		\sum_{j=1}^{3} P(A_j) -2  \quad \text{is a negative quantity}
+		\tag*{$\implies$}
+	\end{equation}
+
+	Therefore, from (\ref{itm3eq3}) and (\ref{itm3eq4}):
+	\begin{equation*}
+	1+\sum_{1\le i,j\le 3,i\ne j} P(A_i\cap A_j) - \sum_{j=1}^{3}P(A_j) \ge 
+		P(A_1\cap A_2\cap A_3) \ge \sum_{j=1}^{3} P(A_j)-2
+	\end{equation*}
+	\begin{equation}\LeftEqNo
+		P(A_1\cap A_2\cap A_3) \ge P(A_1) + P(A_2) + P(A_3) -2
+		\tag*{$\implies$}
+	\end{equation}
+
+	This is a special case of Bonferroni's inequality with $n=2$ and $3$
+	respectively.
+	\\
+
+	In probability theory, Bonferroni's inequality, also known as the
+	union bound, is used to find upper and lower bounds on the probability
+	of finite unions of events.\\
+
+	For a generalized case of $n$ events $A_1$, $A_1$, \ldots, $A_n$
+	\begin{equation*}
+		P(A_1\cap A_2\cap \ldots A_n) \ge P(A_1) + P(A_2) + \ldots
+			+ P(A_n) -(n-1)
+	\end{equation*}
+%\end{enumerate}
+
+%\begin{enumerate}[1: ]
+%\setcounter{enumi}{4}
+\item Let the probability of (success) Head approach be `$p$', and total 
+	number of trials be `$n$'.
+
+	The probability that \ $r$ \ Head appear in \ $k$ \ trials is \quad
+	$\displaystyle p^r (1-p)^{k-r}$. \\
+	Since the coin is flipped until \ $r^{th}$ \ head appears the last
+	outcome is known to be a Head.
+	\\
+
+		Therefore, among ($n-1$) trials, we choose ($r-1$) trials which
+	will result in heads. \\
+	
+	So overall probability of exactly \ $r$ \ Head appear in \ $n$ \ trials
+	is
+	\begin{align*} 
+		p\left\{X=n\right\} = 
+		\begin{pmatrix}
+		n-1 \\ r-1
+		\end{pmatrix}
+		p^r (1-p)^{n-r}; \qquad n \ge r
+	\end{align*} 
+
+%------------------------------------------------------------------------------
+\item For any random variable $X$ with PDF $f_X(x)$
+\begin{enumerate}[$(i)$ ]
+\item Expectation of $X$ is defined mathematically as,
+	\begin{equation}
+		E_x[X=x] = \int_{-\infty}^\infty x f_X(x) dx
+	\end{equation}
+\item The second central moment or variance is defined mathematically as,
+	\begin{equation*}
+	\sigma_X^2 = E_X[(x-\mu_X)^2]=\int_{-\infty}^\infty (x-\mu_X)^2 f_X(x)dx
+	\end{equation*}
+	\begin{equation}
+		\sigma_X^2 = E_X[X^2] - \{ E[X]\}^2	\label{sigmaeq}
+	\end{equation}
+\end{enumerate}
+\begin{enumerate}[$(a)$ ]
+\item \qquad \quad $E_X[cX] = \displaystyle \int_{-\infty}^\infty cx f_X(x) dx
+	= c\int_{-\infty}^\infty x f_X(x) dx = c E_X[X] $
+\item 
+	\begin{align*}
+	Var[cX] &= E_X[(cX)^2] - \{ E[cX]\}^2 \\
+		&= \int_{-\infty}^\infty c^2 x^2 f_X(x) dx 
+		-\left\{\int_{-\infty}^\infty cx f_X(x) dx \right\}^2 \\
+		&= c^2 \left[\int_{-\infty}^\infty x^2 f_X(x) dx 
+		-\left\{\int_{-\infty}^\infty x f_X(x) dx \right\}^2 \right] \\
+		&= c^2 Var(X)
+	\end{align*}
+\item 
+	\begin{align*}
+	Var[c+X] &= E_X[(c+X)^2] - \{ E[c+X]\}^2 \\
+		&= \int_{-\infty}^\infty (c+x)^2 f_X(x) dx 
+		-\left\{\int_{-\infty}^\infty (c+x) f_X(x) dx \right\}^2 \\
+		&= \int_{-\infty}^\infty c^2 f_X(x) dx 
+			+ \int_{-\infty}^\infty x^2 f_X(x) dx 
+			+ 2c\int_{-\infty}^\infty x f_X(x) dx \\
+		&-\left\{ c \int_{-\infty}^\infty f_X(x) dx 
+		 	\int_{-\infty}^\infty + x f_X(x) dx \right\}^2 \\
+		&=c^2+ E_X[X]^2 + 2c E_X[X] -c^2 - \{ E_X[X]\}^2 -2c E_X[X] \\
+		&=E_X[X]^2 - \{ E_X[X]\}^2 \\
+		&=Var(X)
+	\end{align*}
+\item From equation (\ref{sigmaeq}):
+	\begin{equation*}
+		Var(X) = \sigma_X^2 = E_X[X^2] - \{ E[X]\}^2
+	\end{equation*}
+		Thus \ $Var(X)$ \ is a positive quantity.
+	\begin{align*}
+		\implies \quad & Var(X) \ge 0 \\
+		\implies \quad & E_X[X^2] - \{ E[X]\}^2 \ge 0 \\
+		\implies \quad & E_X[X^2] \ge \{ E[X]\}^2 
+	\end{align*}
+\end{enumerate}
+\item From the property of PDF:
+	\begin{align*}
+	\int_{-\infty}^\infty \int_{-\infty}^\infty f_{XY}(x,y)dx dy = 1
+	\end{align*}
+	\begin{align}
+	\implies \qquad a^3 b^2 = 1 
+	\end{align}
+
+	\begin{align}
+		P(X_1 \in(\frac{3}{4},a),
+		X_2 \in(0,\frac{1}{3}) \cap (1,b)) = \frac{5}{8}
+	\end{align}
+
+	\begin{align*}
+	\implies \qquad & 6
+		\int_{3/4}^a x dx \left\{ \int_{0}^{1/3} y dy 
+			+\int_{1}^{b} y dy \right\} = \frac{5}{8} \\
+	\implies \qquad & 6
+		\frac{\left\{a^3-\left(\frac{3}{4}\right)^3\right\}}{3}
+		\cdot\frac{1}{2} \left\{\frac{1}{9}+b^2-1 \right\} 
+					= \frac{5}{8}	\\
+	\implies \qquad & 
+		\left\{a^3-\left(\frac{3}{4}\right)^3\right\}
+		\left\{b^2-\frac{8}{9}\right\} = \frac{5}{8}	\\
+	\implies \qquad & 
+		a^3b^2-a^3\frac{8}{9}-\left(\frac{3}{4}\right)^3b^2
+		+\left(\frac{3}{4}\right)^3 \frac{8}{9} = \frac{5}{8}	\\
+	\implies \qquad & 
+		\left(\frac{3}{4}\right)^3b^2 +\frac{8}{9b^2} = \frac{3}{4} \\
+	\implies \qquad & 
+		\left(\frac{3}{4}\right)^3b^4 -\frac{3}{4}b^2+\frac{8}{9}=0 \\
+	\implies \qquad & 
+		b^2 = 0.88, \ 0.88 \qquad \implies \qquad b=0.938 \\
+	\therefore \qquad & 
+		a = 1.043
+	\end{align*}
+\item 
+	\begin{align*}
+	f_{X_1X_2}(x_1,x_2) = 
+	\begin{cases}
+	     2x_2 e^{-x_1}, & \text{if }\qquad 0\le x_1, \ \ 0 \le x_2 \le 1 \\
+		0, & \text{otherwise}
+	\end{cases}
+	\end{align*}
+
+	\begin{align}
+	f_{X_1}(x_1) &= \int_{-\infty}^\infty f_{X_1X_2}(x_1,x_2)dx_2\nonumber\\
+		&= \int_{0}^1 2x_2 e^{-x_1} dx_2 
+				= \frac{2e^{-x_1}}{2}=e^{-x_1} \label{fx1fx2eq1}
+	\end{align}
+	\begin{align}
+	f_{X_2}(x_2) &= \int_{-\infty}^\infty f_{X_1X_2}(x_1,x_2)dx_1\nonumber\\
+		&= \int_{0}^1 2x_2 e^{-x_1} dx_1 
+				= 2 x_2 	\label{fx1fx2eq2}
+	\end{align}
+	\begin{equation}\LeftEqNo
+	f_{X_1}(x_1) = e^{-x_1} \qquad \text{and} \qquad f_{X_2}(x_2) = 2 x_2
+		\tag*{So}
+	\end{equation}
+	\begin{equation}\LeftEqNo
+	f_{X_1X_2}(x_1 x_2) = f_{X_1}(x_1) f_{X_2}(x_2), \tag*{Since}
+	\end{equation}
+	so the random variables \ $X_1$ and $X_2$ \ are independent.
+\item Using the property of the joint PDF:
+	\begin{align*}
+	\int_{-\infty}^\infty \int_{-\infty}^\infty f_{XY}(x,y)dx dy = 1
+	\end{align*}
+
+	\begin{align*}
+	\implies \qquad & 
+		\int_{x=0}^1 \int_{y=1}^c -3x^2 \ln y dx dy = 1 \\
+	\implies \qquad & 
+		-3 \frac{x^3}{3} \left\vert_0^1
+		\left\{ y\ln y - y \right\} \right\vert_{y=1}^c = 1 \\
+	\implies \qquad & 
+		-1 \left\{ c\ln c - c -(0-1) \right\} = 1 \\
+	\implies \qquad & c\ln c - c +1 =-1 
+	\end{align*}
+	%
+	\begin{align*}
+	f_X(x) = \int_{-\infty}^\infty f_{XY}(x,y) dy 
+		&= \int_{1}^c -3 x^2 \ln y dy \\
+		&= \left. -3x^2 \left\{ y \ln y -y\right\} \right|_{1}^{c} \\ 
+		&= -3x^2 \left\{ c \ln c -c +1 \right\} 
+	\end{align*}
+	\begin{align*}
+	f_Y(y) = \int_{-\infty}^\infty f_{XY}(x,y) dx
+		&= \int_{0}^1 -3 x^2 \ln y dx \\
+		&= \left. -3\ln y \frac{x^3}{3}  \right|_{0}^{1} \\ 
+		&= -\ln y
+	\end{align*}
+	For $X$ and $Y$ to be independent, \ $f_{XY}(x,y) = f_{X}(x) f_{Y}(y)$, 
+	or equivalently, 
+	\begin{align*}
+		- 3x^2 \ln y &= 3x^2 \ln y \left\{ c \ln c -c +1 \right\} \\
+	\implies \qquad & - 1 = c \ln c -c + 1 \\
+	\implies \qquad & c \ln c -c = -2 
+	\end{align*}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{clnc.png}
+	\caption{Graph of function \ $x\ln x-x$}
+	\end{figure}
+	The functions do not intersect and, hence, there is no `$c$' for which
+	the $X$ and $Y$ are independent.
+\item For two independent random variables,
+	\begin{align}
+		f_{XY}(x,y) = f_{X}(x) f_{Y}(y)		\label{itm9eq1}
+	\end{align}
+	\begin{align*}
+		E[g(X) h(Y)] = \int_{-\infty}^\infty \int_{-\infty}^\infty 
+		g(x) h(y) f_{XY}(x,y) dx dy
+	\end{align*}
+	From (\ref{itm9eq1}):
+	\begin{align*}
+		E[g(X) h(Y)] &= \int_{-\infty}^\infty \int_{-\infty}^\infty 
+		g(x) h(y) f_{X}(x) f_{Y}(y) dx dy	\\
+		&= \left\{ \int_{-\infty}^\infty g(x) f_{X}(x) dx \right\}
+		\left\{ \int_{-\infty}^\infty h(y) f_{Y}(y) dy \right\}
+	\end{align*}
+	\begin{equation}\LeftEqNo
+		E_{XY}[g(X) h(Y)] = E_X[g(X)] \ E_Y[h(Y)] \tag*{$\implies$}
+	\end{equation}
+\end{enumerate}
+
+\end{document}
+%
