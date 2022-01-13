@@ -3,6 +3,7 @@
    Desc: The given boolean expression and the reduced K-Map expression are cross-verified.
 */
 #include<stdio.h>
+#include<stdbool.h>
 bool F(bool X, bool Y, bool Z, bool W)
 {
    return (!X && !Y && !Z && !W) || (!X && !Y && !Z && W) || (!X && Y && !Z && !W) || (!X && Y && !Z && W) || (!X && Y && Z && W) || (!X && Y && Z && !W) || (X && Y && Z && W) || (X && !Y && !Z && !W) || (X && !Y && !Z && W) || (X && !Y && Z && W);
