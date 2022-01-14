@@ -1,26 +1,33 @@
 /*
    Author: Shantanu Yadav
-   Desc: The given boolean expression and the reduced K-Map expression are cross-verified.
+   Desc: The given boolean expression obtained using K-Map is implemented using NAND gate
 */
 #include<stdio.h>
 #include<stdbool.h>
-bool F(bool X, bool Y, bool Z, bool W)
+
+bool NAND(bool A, bool B)
 {
-   return (!X && !Y && !Z && !W) || (!X && !Y && !Z && W) || (!X && Y && !Z && !W) || (!X && Y && !Z && W) || (!X && Y && Z && W) || (!X && Y && Z && !W) || (X && Y && Z && W) || (X && !Y && !Z && !W) || (X && !Y && !Z && W) || (X && !Y && Z && W);
+   return !(A && B);
 }
 
-bool KMAP(bool X, bool Y, bool Z, bool W)
+bool NAND3(bool A, bool B, bool C)
 {
-   return (!X && Y) || (!Y && Z) || (X && Z && W);
+   !((A && B) && C);
+}
+
+
+bool F(bool X, bool Y, bool Z, bool W)
+{
+
+   return NAND3(NAND(NAND(X,X),Y),NAND(NAND(Y,Y),Z),NAND(NAND(NAND(X,Z),NAND(X,Z)),W));
 }
 
 int main()
 {
    bool X = false, Y = true, Z = true, W = false;
-   bool result1, result2;
-   result1 = F(X,Y,Z,W);
-   result2 = KMAP(X,Y,Z,W);
-   (result1 == result2)?(printf("F = K-Map reduced expression\n")):(printf("Results dont match\n"));
+   bool result;
+   result = F(X,Y,Z,W);
+   (result)?(printf("1\n")):(printf("0\n"));
    return 0;
    
 }
