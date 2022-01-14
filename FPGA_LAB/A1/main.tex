@@ -52,6 +52,7 @@
 \usepackage{multicol}
 \usepackage{chngcntr}
 %\usepackage{enumerate}
+\usepackage{karnaugh-map}
 
 %\usepackage{wasysym}
 %\newcounter{MYtempeqncnt}
@@ -175,16 +176,26 @@ Reduce the following Boolean Expression to its simplest form using K-Map.
 \section{SOLUTION}
 From the K-Map shown in Figure \ref{fig:kmap} the above expression can be simplified as,
 
-\begin{align}
-    F(X,Y,Z,W) &= \sum(0,1,4,5,6,8,9,11,15) \\
-    &= \Bar{X}Y + \Bar{Y}\Bar{Z} + XZW
-\end{align}
-
-\begin{figure}
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=\columnwidth]{KMAP.png}
+\resizebox{\columnwidth}{!}
+{
+\begin{karnaugh-map}[4][4][1][$$ZW$$][$$XY$$]
+    \minterms{0,1,4,5,6,7,8,9,11,15}
+    \maxterms{2,3,10,12,13,14}
+    \implicantedge{0}{1}{8}{9}
+    \implicant{4}{6}
+    \implicant{15}{11}
+    \draw[color=black, ultra thin] (0,2) --
+    \end{karnaugh-map}
+}
 \caption{K-Map}
 \label{fig:kmap}
 \end{figure}
+
+\begin{align}
+    F(X,Y,Z,W) &= \sum(0,1,4,5,6,7,8,9,11,15) \\
+    &= \Bar{X}Y + \Bar{Y}\Bar{Z} + XZW
+\end{align}
 
 \end{document}
