@@ -1,6 +1,7 @@
 /*
    Author: Shantanu Yadav
    Desc: The boolean expression F(X,Y,Z,W) = X'Y + Y'Z + XZW is implemented using NAND gate
+   Github Link : https://github.com/Shantanu2508/mtech/tree/master/FPGA_LAB/A1
 */
 #include<stdio.h>
 #include<stdbool.h>
