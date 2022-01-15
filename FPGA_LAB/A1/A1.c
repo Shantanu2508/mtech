@@ -1,6 +1,6 @@
 /*
    Author: Shantanu Yadav
-   Desc: The given boolean expression obtained using K-Map is implemented using NAND gate
+   Desc: The boolean expression F(X,Y,Z,W) = X'Y + Y'Z + XZW is implemented using NAND gate
 */
 #include<stdio.h>
 #include<stdbool.h>
