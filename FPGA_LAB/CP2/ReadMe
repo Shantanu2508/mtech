@@ -1,1 +1,8 @@
-
+#ReadMe
+The C++ code implements NAND logic using stack data structure. 
+To obtain the Truth table for the boolean expression mentioned in CP2.pdf give the input
+> 4
+> 0 0 
+> 0 1
+> 1 0 
+> 1 1
