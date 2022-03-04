@@ -52,10 +52,7 @@
 \usepackage{multicol}
 \usepackage{chngcntr}
 %\usepackage{enumerate}
-<<<<<<< HEAD
-=======
 \usepackage{karnaugh-map}
->>>>>>> 719b4b3580cae5e223beaff81b818098e2bbc68c
 
 %\usepackage{wasysym}
 %\newcounter{MYtempeqncnt}
@@ -153,7 +150,7 @@ columns=fullflexible
 \vspace{3cm}
 \title{
 %	\logo{
-EE 5811 : FPGA LAB \\ ASSIGNMENT 1
+EE 5811 : FPGA LAB \\ ASSIGNMENT 2
 %	}
 }
 \author{ Shantanu Yadav (EE20MTECH12001)}	
@@ -167,11 +164,7 @@ EE 5811 : FPGA LAB \\ ASSIGNMENT 1
 %\renewcommand{\theequation}{\theenumi}
 Download the codes from
 \begin{lstlisting}
-<<<<<<< HEAD
-https://github.com/KUSUMAPRIYAPULAVARTY/FPGAlab/tree/Assgnt1
-=======
-https://github.com/Shantanu2508/mtech/blob/master/FPGA_LAB/A1/A1.c
->>>>>>> 719b4b3580cae5e223beaff81b818098e2bbc68c
+https://github.com/Shantanu2508/mtech/tree/master/FPGA_LAB/A2
 \end{lstlisting}
 
 \section{PROBLEM STATEMENT}
@@ -183,16 +176,6 @@ Reduce the following Boolean Expression to its simplest form using K-Map.
 \section{SOLUTION}
 From the K-Map shown in Figure \ref{fig:kmap} the above expression can be simplified as,
 
-<<<<<<< HEAD
-\begin{align}
-    F(X,Y,Z,W) &= \sum(0,1,4,5,6,8,9,11,15) \\
-    &= \Bar{X}Y + \Bar{Y}\Bar{Z} + XZW
-\end{align}
-
-\begin{figure}
-\centering
-\includegraphics[width=\columnwidth]{KMAP.png}
-=======
 \begin{figure}[!ht]
 \centering
 \resizebox{\columnwidth}{!}
@@ -206,18 +189,41 @@ From the K-Map shown in Figure \ref{fig:kmap} the above expression can be simpli
     \draw[color=black, ultra thin] (0,2) --
     \end{karnaugh-map}
 }
->>>>>>> 719b4b3580cae5e223beaff81b818098e2bbc68c
 \caption{K-Map}
 \label{fig:kmap}
 \end{figure}
 
-<<<<<<< HEAD
-\end{document}
-=======
 \begin{align}
     F(X,Y,Z,W) &= \sum(0,1,4,5,6,7,8,9,11,15) \\
     &= \Bar{X}Y + \Bar{Y}Z + XZW
 \end{align}
 
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c||c|}
+    \hline
+    $X$&$Y$&$Z$&$W$&$F$  \\
+    \hline
+    0&0&0&0&0\\
+    0&0&0&1&1\\
+    0&0&1&0&0\\
+    0&0&1&1&1\\
+    0&1&0&0&1\\
+    0&1&0&1&1\\
+    0&1&1&0&1\\
+    0&1&1&1&1\\
+    1&0&0&0&0\\
+    1&0&0&1&1\\
+    1&0&1&0&0\\
+    1&0&1&1&1\\
+    1&1&0&0&0\\
+    1&1&0&1&0\\
+    1&1&1&0&0\\
+    1&1&1&1&1\\
+    
+    \hline
+    \end{tabular}
+    \caption{Truth table for $F(X,Y,Z,W)$}
+\end{table}
+
 \end{document}
->>>>>>> 719b4b3580cae5e223beaff81b818098e2bbc68c

@@ -27,8 +27,8 @@
 %\usepackage{xtab}
 \usepackage{longtable}
 \usepackage{multirow}
-%\usepackage{algorithm}
-%\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 \usepackage{enumitem}
 \usepackage{mathtools}
 \usepackage{tikz}
@@ -52,10 +52,7 @@
 \usepackage{multicol}
 \usepackage{chngcntr}
 %\usepackage{enumerate}
-<<<<<<< HEAD
-=======
 \usepackage{karnaugh-map}
->>>>>>> 719b4b3580cae5e223beaff81b818098e2bbc68c
 
 %\usepackage{wasysym}
 %\newcounter{MYtempeqncnt}
@@ -153,7 +150,7 @@ columns=fullflexible
 \vspace{3cm}
 \title{
 %	\logo{
-EE 5811 : FPGA LAB \\ ASSIGNMENT 1
+EE 5811 : FPGA LAB \\ Challenge Problem 2
 %	}
 }
 \author{ Shantanu Yadav (EE20MTECH12001)}	
@@ -167,57 +164,111 @@ EE 5811 : FPGA LAB \\ ASSIGNMENT 1
 %\renewcommand{\theequation}{\theenumi}
 Download the codes from
 \begin{lstlisting}
-<<<<<<< HEAD
-https://github.com/KUSUMAPRIYAPULAVARTY/FPGAlab/tree/Assgnt1
-=======
-https://github.com/Shantanu2508/mtech/blob/master/FPGA_LAB/A1/A1.c
->>>>>>> 719b4b3580cae5e223beaff81b818098e2bbc68c
+https://github.com/Shantanu2508/mtech/tree/master/FPGA_LAB/CP2
 \end{lstlisting}
 
 \section{PROBLEM STATEMENT}
-Reduce the following Boolean Expression to its simplest form using K-Map.
+Is it possible to implement the NAND logic using some data structure/algorithm?
+
+\section{THEORY}
+A NAND (NOT-AND) gate produces a False output only if all the inputs are True. The truth table is as follows
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    $X$&$Y$&OUT  \\
+    \hline
+    0&0&1\\
+    0&1&1\\
+    1&0&1\\
+    1&1&0\\
+    \hline
+    \end{tabular}
+    \caption{Truth table for NAND gate}
+\end{table}
+The NAND gate is a universal gate because any boolean function can be implemented by using a combination of NAND gates. One interesting property of NAND logic is that if any of the input is LOW the corresponding output is HIGH. This logic can be realised using stack data structure. Stacks are abstract data structures based on LIFO (Last In First Out) technique. The two main principal operations are push and pop. Push operation adds an element to the stack and pop operation removes an element from the top of the stack. \\
+
+To implement NAND logic we first create an empty stack. The input to the NAND gate is assumed to be an array of size $N \times 2$, where $N$ are the total number of input combinations. For each input stream, $X$ is pushed into the stack and compared with $Y$. If any of them is 0 the output is 1 otherwise if the top element of stack and the Y input are both equal to 1 then output is false. 
+
+\begin{algorithm}
+\caption{NAND Logic using stack data structure }\label{alg:cap}
+\begin{algorithmic}
+\Require Array of size $N \times 2$
+\Ensure Create an empty stack $S$
+\State $i \gets 0$
+\While{$i \leq N-1$}
+\State $S \gets input[i][0]$
+\If{$S.top() == 0$}
+    \State $output[i] \gets 1$
+    \State $i \gets i+1$
+\ElsIf{$input[i][1] == 0$}
+    \State $output[i] \gets 1$
+    \State $i \gets i+1$
+\Else{}
+    \State $output[i] \gets 0$
+    \State $i \gets i+1$
+\EndIf
+\State $S.pop()$
+
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+\section{EXAMPLE}
+Implement the boolean expresion given below using NAND gates
 \begin{align}
-    F(X,Y,Z,W)=\sum(0,1,4,5,6,8,9,11,15)
+    F(X,Y) = X + \Bar{Y} 
 \end{align}
+The logic circuit is realised using NAND gates as in shown figure below \\
 
-\section{SOLUTION}
-From the K-Map shown in Figure \ref{fig:kmap} the above expression can be simplified as,
-
-<<<<<<< HEAD
-\begin{align}
-    F(X,Y,Z,W) &= \sum(0,1,4,5,6,8,9,11,15) \\
-    &= \Bar{X}Y + \Bar{Y}\Bar{Z} + XZW
-\end{align}
-
-\begin{figure}
-\centering
-\includegraphics[width=\columnwidth]{KMAP.png}
-=======
-\begin{figure}[!ht]
-\centering
-\resizebox{\columnwidth}{!}
-{
-\begin{karnaugh-map}[4][4][1][$$ZW$$][$$XY$$]
-    \minterms{0,1,4,5,6,7,8,9,11,15}
-    \maxterms{2,3,10,12,13,14}
-    \implicantedge{0}{1}{8}{9}
-    \implicant{4}{6}
-    \implicant{15}{11}
-    \draw[color=black, ultra thin] (0,2) --
-    \end{karnaugh-map}
+ \\ 
+ \begin{tikzpicture}
+% Circuit style
+\ctikzset{
+    logic ports=ieee,
+logic ports/scale=0.8
 }
->>>>>>> 719b4b3580cae5e223beaff81b818098e2bbc68c
-\caption{K-Map}
-\label{fig:kmap}
-\end{figure}
+% Logic ports
+\node[nand port] (na) at (0,1){};
+\node[nand port] (nb) at (2,0){};
+\draw (na.out) -| (nb.in 1);
+\draw (na.in 2) -| (na.in 1);
+\draw (nb.in 2) -| ++(-3,0)node[left](Y){Y};
+\draw (na.in 2) -| ++(-1,0)node[left](X){X};
+\draw (nb.out) -| ++(1,0)node[right](F){F};
+\end{tikzpicture}
 
-<<<<<<< HEAD
-\end{document}
-=======
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    $X$&$Y$&F  \\
+    \hline
+    0&0&1\\
+    0&1&0\\
+    1&0&1\\
+    1&1&1\\
+    \hline
+    \end{tabular}
+    \caption{Truth Table for $F = X + \Bar{Y}$. (Verified using code)}
+\end{table}
+\\
+If ${X}$ and ${Y}$ are sets containing only 0 and 1 then the input stream to the NAND logic can be defined as,
 \begin{align}
-    F(X,Y,Z,W) &= \sum(0,1,4,5,6,7,8,9,11,15) \\
-    &= \Bar{X}Y + \Bar{Y}Z + XZW
+    S = \left\{ \ (x,y) \ | \  x \in X, \  y\in Y \ \right \}
 \end{align}
-
+where each $(x,y)$ pair is an input to the NAND gate at any time instant.
+The NAND logic can be interpreted as a function $g:S \rightarrow \{0,1\}$ defined as,
+\begin{align}
+ g(x,y) = 
+ \begin{cases}
+ 0, & x = 1  \  \text{and} \ y = 1 \\
+ 1, & \text{otherwise}
+ \end{cases}
+\end{align}
+ Thus from the above figure, the boolean expression can be expressed as
+\begin{align}
+    F = g(g(x,x),y)
+\end{align}
+Each time when function $g$ is invoked, the $x$ value of the first input is pushed into the stack. If $x = 0$ the output is 1 regardless of $y$, but if $x = 1$ the output is 1 if $y = 0$ otherwise the output is 0. After this $x$ is removed from the stack and the procedure repeats for other inputs.
 \end{document}
->>>>>>> 719b4b3580cae5e223beaff81b818098e2bbc68c

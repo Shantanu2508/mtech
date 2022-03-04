@@ -1,0 +1,23 @@
+Video Link : https://www.youtube.com/watch?v=MOD9U307vmA&list=PLWfKp_2GxQdQ3E7SFEXw_i5qsim4DvUTe&index=2&t=1s
+
+General Instructions:
+----connect phone and laptop using ssh----
+run on phone
+sshd
+run on laptop
+ssh username@ipaddress -p8022
+------------------------------------------
+----Get platformio.ini----
+//Goto desired directory - eg A2
+mkdir -p .pio/build/uno/
+cd A2
+wget https://raw.githubusercontent.com/gadepall/termux/main/pio/Projects/hello/platformio.ini
+------------------------------------------
+----Flash from phone to laptop----
+run on phone
+scp .pio/build/uno/firmware.bin username@ipaddress:...../.pio/build/uno/firmware.bin
+-------------------------------------------
+----Upload to arduino----
+run from laptop
+pio run -t nobuild -t upload
+--------------------------------------------
