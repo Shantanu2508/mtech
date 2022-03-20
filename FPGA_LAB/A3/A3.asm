@@ -32,7 +32,7 @@ Start:
 	;Reading pin4
 	mov r21,r16			; Retrieving the backup stored in r16	
 	lsr r21				; shift right to read pin 5
-and r21, r20 		; Getting the input from pin4 (input W)
+        and r21, r20 		; Getting the input from pin4 (input W)
 
 	;Implementing the kmap expression
 	mov r22,r17			; X
