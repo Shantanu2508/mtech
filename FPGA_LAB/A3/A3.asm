@@ -1,95 +1,61 @@
-.nolist ; inculded libraries
-.include "m328Pdef.inc" 
-.list
 
-ldi r16,low(RAMEND)
-out SPL,r16
-ldi r16,high(RAMEND)
-out SPH,r16
-             
+		
+.include "m328Pdef.inc"
 
-ldi r16,0b00100000 
-                    
-out DDRB,r16
+Start:
+	ldi r17, 0b11000011 ; identifying input pins 2,3,4,5 - indicated by 0s
+	out DDRD,r17		; declaring pins as input
+	ldi r17, 0b11111111 ;
+	out PORTD,r17		; activating internal pullup for pins 10,11,12,13  
+	in r17,PIND
 
-ldi r16,0b00000000
-ldi r16, 0b00000101 
-out TCCR0B, r16
+	ldi r16, 0b00100000 ;identifying output pins 13 - indicated by 1s
+	out DDRB,r16		;declaring pins as output
 
-ldi r25,0x0f
+	;Reading pin2
+	lsr r17
+	lsr r17				; Twice shift right to read pin 2
+	mov r16, r17		; Backing up the portD content in r16
+	ldi r20,0b00000001	; Mask for reading pin 2
+	and r17,r20 		; Getting input from pin2 (input X)
+
+	;Reading pin3
+	mov r18,r16			; Retrieving the backup stored in r16
+	lsr r18				; shift right to read pin 3
+	and r18, r20 		; Getting the input from pin3 (input Y)
+
+	;Reading pin4
+	mov r19,r16			; Retrieving the backup stored in r16	
+	lsr r19				; shift right to read pin 4
+	and r19, r20 		; Getting the input from pin4 (input Z)
+	
+	;Reading pin4
+	mov r21,r16			; Retrieving the backup stored in r16	
+	lsr r21				; shift right to read pin 5
+and r21, r20 		; Getting the input from pin4 (input W)
+
+	;Implementing the kmap expression
+	mov r22,r17			; X
+	mov r23,r18			; Y
+	mov r24,r19         ; Z
+	mov r25,r21         ; W   
+	
+	com r22 ;x'
+	and r22,r23 ;x'y
+	com r23 ;y'
+	and r23,r24 ;y'z
+	and r24,r17 ;xz
+	and r24,r25 ;xzw
+	or  r22,r23 ;x'y+y'z
+	or  r22,r25 ; x'y+y'z+xzw
+	
+	sub r22,r20
+	breq loop
+	rjmp Start
 
 loop:
-
-
-    rcall BITSEP
-
-		com r13 ;x' 
-		mov r14,r13 ;x'
-		and r14,r12 ;x'y
-		com r12 ;y'
-		and r12,r11 ;y'z
-		com r13 ;x
-		and r13,r11 ;xz
-		and r13,r10 ;xzw
-		or r14,r12 ;x'y + y'z
-		or r14,r13 ; x'y + y'z + xzw 
-lsl r14
-lsl r14
-lsl r14
-lsl r14
-lsl r14
-    out PortB,r14
-
-    ldi r19, $32
-    rcall DELAY
-
-    rjmp loop
-
-DELAY: ;this is delay (function)
-               ;times to run the loop = 64 for 1 second delay
-    lp2:
-        IN r16, TIFR0 ;tifr is timer interupt flag (8 bit timer runs 256 times)
-        ldi r17, 0b00000010
-        AND r16, r17 ;need second bit
-        BREQ DELAY
-        OUT TIFR0, r17 ;set tifr flag high
-        dec r19
-        brne lp2
-    ret
+	ldi r16, 0b00100000
+	out PORTB,r16
 
 
 
-
-BITSEP:
-
-    in r25, PinD
-lsr r25
-lsr r25
-lsr r25
-lsr r25
-lsr r25
-    mov r21, r25 ;w LSB
-    sub r21,r20
-    andi r21,0x01
-    mov r10,r21
-
-    mov r22, r25 ;z
-    sub r22,r20
-    andi r22,0x02
-    lsr r22
-    mov r11,r22
-	
-    mov r23, r25 ;y
-    sub r23,r20
-    andi r23,0x04
-    lsr r23
-    lsr r23
-    mov r12,r23
-
-	mov r24, r25 ;x MSB
-    sub r24,r20
-    andi r24,0x08
-    lsr r24
-    mov r13,r24
-
-    ret
