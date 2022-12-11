@@ -29,8 +29,16 @@ Create rectangle with random height and fixed width and store in rectangleHolder
 Do proper xoffset and height
 
 
-Draw rectangles on image
 
+Draw rectangles on image
+------------------------
+Fn to paint rectangles on Image - arg:(sf::Image, vector<rectangle>)
+
+Bubblesort
+----------
+Runs when user presses "space" key
+Sort on the basis of height
+arg: vector<rectangle>
   
 <img width="491" alt="init_recBars" src="https://user-images.githubusercontent.com/70562197/188501611-4a254d7f-c5f4-46ef-a311-5c14b4af4f3f.png">
   
