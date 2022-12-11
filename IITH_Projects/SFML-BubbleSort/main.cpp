@@ -1,180 +1,98 @@
 #include <iostream>
-#include <vector>
+#include <cstdlib>
 #include <SFML/Graphics.hpp>
-#include <ctime>
+using namespace std;
 
-struct Rectangle
-{
-	int hight = 0;
-	int width = 3;
-
-	int x_location = 0;
-	int y_location = 0;
-
-	sf::Color colour = sf::Color(177, 237, 232);
+class Rectangle {
+	int width;
+public:
+	int xLocation = 0;
+	int yLocation = 0;
+	int height = 0;
+	Rectangle() {
+		this->width = 5;	
+	}
 };
 
-void FillVector(Rectangle rec, std::vector<Rectangle>& recHolder, sf::Image Image)
-{
-	int xOffset = 0;
-	while (xOffset < Image.getSize().x)
-	{
-		rec.hight = rand() % Image.getSize().y - 50;
-		if (rec.hight < 5)
-		{
-			rec.hight = 5;
+vector<Rectangle> rectHolder;
+void fillImage(sf::Image &image, int width, int height, int noRectangles) {
+	int xOffset = 10;
+	int xLocation = 0;
+	for (int i = 0; i < noRectangles; i++) {
+		Rectangle rect;
+		xLocation += xOffset;
+		if (xLocation >= width) return;
+		rect.height = rand() % 526;
+		for (int i = 0; i < rect.height; i++) {
+			image.setPixel(xLocation, height - 1 - i, sf::Color::Magenta);
 		}
-
-		rec.x_location = xOffset;
-		rec.y_location = Image.getSize().y - rec.hight;
-
-		recHolder.push_back(rec);
-
-		xOffset += 5;
+		rect.xLocation = xLocation;
+		rectHolder.push_back(rect);
 	}
 }
-void PiantVector(sf::Image& image, std::vector<Rectangle> recHolder)
-{
-
-	for (int i = 0; i < recHolder.size(); i++)
-	{
-		for (int x = 0; x < recHolder[i].width; x++)
-		{
-			for (int y = 0; y < recHolder[i].hight; y++)
-			{
-				image.setPixel(recHolder[i].x_location + x, recHolder[i].y_location + y, recHolder[i].colour);
-			}
+void clearImage(sf::Image& image, int width, int height) {
+	for (int i = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
+			image.setPixel(i, j, sf::Color::White);
 		}
 	}
-
 }
-void BuubleSort(std::vector<Rectangle>& recHolder, sf::Image& image, sf::RenderWindow& window, sf::Texture texture, sf::Sprite sprite)
-{
-	Rectangle tempRec;
-	int tempXlocaion;
-
-	for (int i = 0; i < recHolder.size(); i++)
-	{
-		for (int j = 0; j < recHolder.size() - 1; j++)
-		{
-			if (recHolder[j].hight > recHolder[j + 1].hight)
-			{
-				window.clear();
-				//Moave bigge
-				for (int x = 0; x < recHolder[j].width; x++)
-				{
-					for (int y = 0; y < recHolder[j].hight; y++)
-					{
-						image.setPixel(recHolder[j + 1].x_location + x, recHolder[j].y_location + y, recHolder[j].colour);
-					}
-				}
-				//Delete the Big
-				for (int x = 0; x < recHolder[j].width; x++)
-				{
-					for (int y = 0; y < recHolder[j].hight; y++)
-					{
-						image.setPixel(recHolder[j].x_location + x, recHolder[j].y_location + y, sf::Color(255, 255, 255));
-					}
-				}
-				//Redraw Small 
-				for (int x = 0; x < recHolder[j + 1].width; x++)
-				{
-					for (int y = 0; y < recHolder[j + 1].hight; y++)
-					{
-						image.setPixel(recHolder[j].x_location + x, recHolder[j + 1].y_location + y, recHolder[j].colour);
-					}
-				}
-
-
-				tempXlocaion = recHolder[j].x_location;
-				recHolder[j].x_location = recHolder[j + 1].x_location;
-				recHolder[j + 1].x_location = tempXlocaion;
-
-
-				tempRec = recHolder[j];
-				recHolder[j] = recHolder[j + 1];
-				recHolder[j + 1] = tempRec;
-				texture.loadFromImage(image);
-				sprite.setTexture(texture);
-
-				window.draw(sprite);
-				window.display();
-
+void drawImage(sf::Image  &image, int height) {
+	for (auto rect : rectHolder) {
+		for (int i = 0; i < rect.height; i++) {
+			image.setPixel(rect.xLocation, height - 1 - i, sf::Color::Magenta);
+		}
+	}
+}
+void bubbleSort() {
+	for (int i = 0; i < rectHolder.size() - 1; i++) {
+		for (int j = 0; j < rectHolder.size()-i-1; j++) {
+			if (rectHolder[j].height >= rectHolder[j+1].height) {
+				int temp = rectHolder[j].xLocation;
+				rectHolder[j].xLocation = rectHolder[j+1].xLocation;
+				rectHolder[j+1].xLocation = temp;
+				Rectangle tempRect = rectHolder[j];
+				rectHolder[j] = rectHolder[j+1];
+				rectHolder[j + 1] = tempRect;
 			}
 		}
 	}
 }
 
-int main()
-{
+int main() {
+int width = 1028;
+int height = 526;
+sf::RenderWindow window(sf::VideoMode(width, height), "Bubblesort");
+sf::Image image;
+image.create(width, height, sf::Color::White);
+sf::Texture texture;
+sf::Sprite sprite;
 
-	srand(time(NULL));
+fillImage(image, width, height, 1000);
 
-	int width = 1000;
-	int hight = 800;
-	bool spaceIspressed = false;
-
-	sf::RenderWindow window(sf::VideoMode(width, hight), "Bubble Srot");
+while (window.isOpen()) {
 	sf::Event ev;
-
-	sf::Image image;
-	image.create(width, hight);
-
-	for (int i = 0; i < width; i++)
-	{
-		for (int j = 0; j < hight; j++)
-		{
-
-			image.setPixel(i, j, sf::Color(255, 255, 255));
+	while (window.pollEvent(ev)) {
+		if (ev.type == sf::Event::Closed) {
+			window.close();
+		}
+		if (ev.type == sf::Event::KeyReleased) {
+			if (ev.key.code == sf::Keyboard::Space) {
+				bubbleSort();
+				clearImage(image, width, height);
+				drawImage(image, height);
+				break;
+			}
 		}
 	}
 
-	sf::Texture texture;
 	texture.loadFromImage(image);
-	sf::Sprite sprtie;
-	sprtie.setTexture(texture);
+	sprite.setTexture(texture);
 
-	Rectangle rectanlge;
-	std::vector<Rectangle> rectanlgeVector;
+	window.clear();
+	window.draw(sprite);
+	window.display();
+}
 
-	FillVector(rectanlge, rectanlgeVector, image);
-	PiantVector(image, rectanlgeVector);
-
-	texture.loadFromImage(image);
-	sprtie.setTexture(texture);
-
-	while (window.isOpen())
-	{
-		while (window.pollEvent(ev))
-		{
-			if (ev.type == sf::Event::Closed)
-			{
-				window.close();
-			}
-			if (ev.type == sf::Event::KeyReleased)
-			{
-				if (ev.key.code == sf::Keyboard::Space)
-				{
-					spaceIspressed = true;
-				}
-			}
-		}
-
-		texture.loadFromImage(image);
-		sprtie.setTexture(texture);
-
-		window.clear();
-
-		if (spaceIspressed)
-		{
-			BuubleSort(rectanlgeVector, image, window, texture, sprtie);
-			spaceIspressed = false;
-		}
-
-		window.draw(sprtie);
-
-		window.display();
-	}
-
-	return 0;
+return 0;
 }
