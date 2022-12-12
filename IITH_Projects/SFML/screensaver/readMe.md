@@ -4,8 +4,8 @@ SFML/Graphics.hpp
 
 Components
 ----------
-Window
-Shape object
+- Window
+- Shape object
 
 Functionality
 -------------
